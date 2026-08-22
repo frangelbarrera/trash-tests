@@ -1,0 +1,12 @@
+{
+  "good/lodash-get.test.ts": {
+    "expectedMTC": 95,
+    "expectedFindings": 0,
+    "rationale": "All tests have meaningful assertions on return values. Tests both happy and error paths."
+  },
+  "good/formatPrice.test.ts": {
+    "expectedMTC": 95,
+    "expectedFindings": 0,
+    "rationale": "All tests assert return value or thrown error. Comprehensive error path coverage."
+  }
+}

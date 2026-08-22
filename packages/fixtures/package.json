@@ -1,0 +1,8 @@
+{
+  "name": "@trash-tests/fixtures",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Hand-labeled corpus of good, decorative, and edge-case test files. Source of truth for scoring calibration.",
+  "license": "Apache-2.0",
+  "files": ["good", "decorative", "edge", "golden"]
+}

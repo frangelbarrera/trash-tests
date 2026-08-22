@@ -1,0 +1,15 @@
+{
+  "name": "@trash-tests/core-tests",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "vitest run --coverage"
+  },
+  "dependencies": {
+    "@trash-tests/core": "workspace:*"
+  },
+  "devDependencies": {
+    "vitest": "^2.1.8",
+    "@vitest/coverage-v8": "^2.1.8"
+  }
+}

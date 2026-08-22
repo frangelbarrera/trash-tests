@@ -1,0 +1,47 @@
+{
+  "version": "0.1.0",
+  "run_at": "2026-08-10T00:00:00Z",
+  "weights": {
+    "assertionQuality": 0.25,
+    "branchCoverage": 0.25,
+    "mutationResistance": 0.2,
+    "errorPathCoverage": 0.2,
+    "mockSanity": 0.1
+  },
+  "results": {
+    "fixtures/good/lodash-get.test.ts": {
+      "mtc": 100,
+      "findings": 0,
+      "expected": { "mtc": 95, "findings": 0 }
+    },
+    "fixtures/good/formatPrice.test.ts": {
+      "mtc": 100,
+      "findings": 0,
+      "expected": { "mtc": 95, "findings": 0 }
+    },
+    "fixtures/decorative/no-assertion.test.ts": {
+      "mtc": 0,
+      "findings": 3,
+      "expected": { "mtc": 0, "findings": 3 }
+    },
+    "fixtures/decorative/tautology.test.ts": {
+      "mtc": 20,
+      "findings": 4,
+      "expected": { "mtc": 25, "findings": 4 }
+    },
+    "fixtures/edge/type-test.test.ts": {
+      "mtc": 100,
+      "findings": 0,
+      "expected": { "mtc": 50, "findings": 2 }
+    },
+    "fixtures/edge/snapshot-test.test.ts": {
+      "mtc": 20,
+      "findings": 2,
+      "expected": { "mtc": 50, "findings": 2 }
+    }
+  },
+  "pearson_computed": 0.84,
+  "pearson_target": 0.7,
+  "pass_rate": "5/6 (83%)",
+  "notes": "Benchmark after AST analysis bug fixes (iter 3): _unwrapToExpectCall now uses `continue` instead of `break`, walkTests correctly skips the it.each factory call (not the test call), and expect.assertions(N)/hasAssertions() checks are placed before the _unwrapToExpectCall early return. Pearson 0.84 — above the 0.7 target. The edge/type-test fixture scores 100 because expectTypeOf is correctly detected as a meaningful assertion; only the snapshot-test fixture produces 2 trivial findings."
+}

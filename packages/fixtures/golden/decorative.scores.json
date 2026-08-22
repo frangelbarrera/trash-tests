@@ -1,0 +1,12 @@
+{
+  "decorative/tautology.test.ts": {
+    "expectedMTC": 25,
+    "expectedFindings": 4,
+    "rationale": "4 trivial assertions (tautology, toBeDefined-only, toBeTruthy-only, snapshot-only). No meaningful assertions."
+  },
+  "decorative/no-assertion.test.ts": {
+    "expectedMTC": 0,
+    "expectedFindings": 3,
+    "rationale": "3 tests with zero assertions. Pure no-assertion pattern."
+  }
+}

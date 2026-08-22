@@ -1,0 +1,38 @@
+[
+  {
+    "file": "good/formatPrice.test.ts",
+    "mtc": 100,
+    "findings": 0,
+    "timestamp": null
+  },
+  {
+    "file": "good/lodash-get.test.ts",
+    "mtc": 100,
+    "findings": 0,
+    "timestamp": null
+  },
+  {
+    "file": "decorative/tautology.test.ts",
+    "mtc": 20,
+    "findings": 4,
+    "timestamp": null
+  },
+  {
+    "file": "decorative/no-assertion.test.ts",
+    "mtc": 0,
+    "findings": 3,
+    "timestamp": null
+  },
+  {
+    "file": "edge/snapshot-test.test.ts",
+    "mtc": 20,
+    "findings": 2,
+    "timestamp": null
+  },
+  {
+    "file": "edge/type-test.test.ts",
+    "mtc": 100,
+    "findings": 0,
+    "timestamp": null
+  }
+]

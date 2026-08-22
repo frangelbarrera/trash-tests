@@ -1,0 +1,12 @@
+{
+  "edge/type-test.test.ts": {
+    "expectedMTC": 50,
+    "expectedFindings": 2,
+    "rationale": "Type-only tests — legitimate pattern, but no runtime assertions. Should be `info` severity, not `warning`."
+  },
+  "edge/snapshot-test.test.ts": {
+    "expectedMTC": 50,
+    "expectedFindings": 2,
+    "rationale": "Snapshot tests of generated output — legitimate pattern. Should be `info` severity."
+  }
+}

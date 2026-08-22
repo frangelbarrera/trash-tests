@@ -1,0 +1,83 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build output
+dist/
+build/
+*.tsbuildinfo
+.tsbuildinfo
+
+# Exception: GitHub Action dist/ MUST be committed (bundled with @vercel/ncc)
+!packages/github-action/dist/
+!packages/github-action/dist/**
+
+# Coverage
+coverage/
+*.lcov
+.nyc_output/
+
+# Cache
+.cache/
+.trashtests-cache/
+~/.cache/trashtests/
+
+# IDE
+.vscode/*
+!.vscode/settings.json
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Environment
+.env
+.env.local
+.env.*.local
+*.local
+
+# Secrets and credentials — NEVER commit these
+.npmrc
+.npmrc.*
+*.key
+*.pem
+*.p12
+*.pfx
+*.crt
+*.cer
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+.ssh/
+secrets/
+secrets.json
+*service-account*.json
+*gcp-sa*.json
+*firebase-admin*.json
+.aws/
+.aws/credentials
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Test results
+junit.xml
+test-results/
+test-output/
+
+# Package artifacts
+*.tgz
+*.tar.gz
+*.zip
+
+# Internal documents
+docs/internal/

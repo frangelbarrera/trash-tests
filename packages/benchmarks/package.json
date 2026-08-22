@@ -1,0 +1,16 @@
+{
+  "name": "@trash-tests/benchmarks",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "calibrate": "tsx ../../scripts/calibrate.ts",
+    "check-stability": "tsx ../../scripts/check-score-stability.ts"
+  },
+  "dependencies": {
+    "@trash-tests/core": "workspace:*"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2"
+  }
+}

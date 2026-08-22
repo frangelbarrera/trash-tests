@@ -1,0 +1,35 @@
+{
+  "name": "@trash-tests/core",
+  "version": "1.0.0",
+  "description": "Core analysis engine for Trash Tests.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": ["dist", "docs"],
+  "scripts": {
+    "build": "node ../../scripts/clean-dist.mjs dist && tsc -p tsconfig.json",
+    "dev": "tsc -p tsconfig.json --watch",
+    "test": "vitest run --coverage",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@babel/parser": "^7.26.3",
+    "@babel/traverse": "^7.25.9",
+    "@babel/types": "^7.26.0"
+  },
+  "devDependencies": {
+    "@types/babel__traverse": "^7.20.6",
+    "@types/node": "^22.10.0",
+    "vitest": "^2.1.8",
+    "@vitest/coverage-v8": "^2.1.8"
+  }
+}

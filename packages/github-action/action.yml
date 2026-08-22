@@ -1,0 +1,35 @@
+name: 'Trash Tests'
+description: 'Review JavaScript and TypeScript tests in pull requests and report weak-test findings.'
+author: 'frangelbarrera'
+branding:
+  icon: 'trash-2'
+  color: 'gray-dark'
+inputs:
+  fail-below:
+    description: 'Fail the check when the score is below this number (0-100). Default: 0 (off).'
+    required: false
+    default: '0'
+  ignore-breakage:
+    description: 'Keep the check successful when the score is below fail-below. Default: false.'
+    required: false
+    default: 'false'
+  post-comment:
+    description: 'Post or update a summary comment on the pull request. Default: true.'
+    required: false
+    default: 'true'
+  coverage-path:
+    description: 'Path to coverage-final.json. Default: ./coverage/coverage-final.json.'
+    required: false
+    default: './coverage/coverage-final.json'
+outputs:
+  score:
+    description: 'Test quality score (0-100).'
+  assertion-quality:
+    description: 'Assertion Quality score (0-100) when measured.'
+  branch-coverage:
+    description: 'Repository Branch Coverage score (0-100) when coverage data is available.'
+  findings-count:
+    description: 'Number of critical and warning findings.'
+runs:
+  using: 'node20'
+  main: 'dist/index.js'

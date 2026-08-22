@@ -1,0 +1,37 @@
+{
+  "name": "trashtests",
+  "version": "1.0.0",
+  "description": "Find weak JavaScript and TypeScript tests before they become a false CI signal.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "bin": {
+    "trashtests": "./bin.js"
+  },
+  "files": ["bin.js"],
+  "keywords": [
+    "testing",
+    "test-quality",
+    "test-effectiveness",
+    "weak-tests",
+    "decorative-tests",
+    "javascript-testing",
+    "typescript-testing",
+    "vitest",
+    "jest",
+    "static-analysis",
+    "cli"
+  ],
+  "engines": {
+    "node": ">=20.11.0"
+  },
+  "scripts": {
+    "scan": "node bin.js scan"
+  },
+  "dependencies": {
+    "@trash-tests/cli": "workspace:*"
+  },
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  }
+}

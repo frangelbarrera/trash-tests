@@ -1,0 +1,26 @@
+{
+  "name": "@trash-tests/github-action",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Repository-distributed GitHub Action for Trash Tests pull request analysis.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "bundle": "node scripts/bundle.mjs",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@actions/core": "^3.0.1",
+    "@actions/github": "^9.1.1",
+    "@trash-tests/core": "workspace:*",
+    "@trash-tests/reporters": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@vercel/ncc": "^0.38.4",
+    "vitest": "^2.1.8"
+  }
+}
