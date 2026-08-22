@@ -1,5 +1,5 @@
 import { execFileSync } from 'node:child_process'
-import { existsSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, mkdtempSync, readdirSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -9,16 +9,14 @@ const packageNames = ['core', 'reporters', 'cli', 'trashtests']
 const workDir = mkdtempSync(join(tmpdir(), 'trashtests-package-smoke-'))
 const tarballDir = join(workDir, 'tarballs')
 const consumerDir = join(workDir, 'consumer')
-const npmCli = resolve(
-  process.execPath,
-  '..',
-  '..',
-  'lib',
-  'node_modules',
-  'npm',
-  'bin',
-  'npm-cli.js',
-)
+const npmCli =
+  process.platform === 'win32'
+    ? resolve(process.execPath, '..', 'node_modules', 'npm', 'bin', 'npm-cli.js')
+    : resolve(process.execPath, '..', '..', 'lib', 'node_modules', 'npm', 'bin', 'npm-cli.js')
+const pnpmCli = process.env.npm_execpath
+if (!pnpmCli) {
+  throw new Error('The smoke test must be run through pnpm so its CLI path is available.')
+}
 
 function run(command, args, cwd) {
   execFileSync(command, args, {
@@ -31,21 +29,18 @@ function run(command, args, cwd) {
 try {
   mkdirSync(tarballDir)
   for (const name of packageNames) {
-    run('pnpm', ['pack', '--pack-destination', tarballDir], join(root, 'packages', name))
+    run(
+      process.execPath,
+      [pnpmCli, 'pack', '--pack-destination', tarballDir],
+      join(root, 'packages', name),
+    )
   }
 
   const tarballs = packageNames.map((name) => {
     const prefix = name === 'trashtests' ? 'trashtests-' : `trash-tests-${name}-`
-    const matches = execFileSync(
-      'find',
-      [tarballDir, '-maxdepth', '1', '-name', `${prefix}*.tgz`],
-      {
-        encoding: 'utf8',
-      },
-    )
-      .trim()
-      .split('\n')
-      .filter(Boolean)
+    const matches = readdirSync(tarballDir)
+      .filter((file) => file.startsWith(prefix) && file.endsWith('.tgz'))
+      .map((file) => join(tarballDir, file))
     if (matches.length !== 1) {
       throw new Error(`Expected one tarball for ${name}; found ${matches.length}.`)
     }
@@ -62,12 +57,18 @@ try {
   }
   run(process.execPath, [npmCli, 'install', '--ignore-scripts', ...tarballs], consumerDir)
 
-  const bin = join(consumerDir, 'node_modules', '.bin', 'trashtests')
-  if (!existsSync(bin)) {
+  const bin = join(
+    consumerDir,
+    'node_modules',
+    '.bin',
+    process.platform === 'win32' ? 'trashtests.cmd' : 'trashtests',
+  )
+  const entrypoint = join(consumerDir, 'node_modules', 'trashtests', 'bin.js')
+  if (!existsSync(bin) || !existsSync(entrypoint)) {
     throw new Error('The trashtests binary was not installed in the clean consumer project.')
   }
-  run(bin, ['--version'], consumerDir)
-  run(bin, ['list-rules'], consumerDir)
+  run(process.execPath, [entrypoint, '--version'], consumerDir)
+  run(process.execPath, [entrypoint, 'list-rules'], consumerDir)
 
   console.log(`\nPackage smoke test passed in ${consumerDir}`)
 } finally {
