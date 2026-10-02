@@ -145,3 +145,7 @@ For contribution guidance, read [`CONTRIBUTING.md`](./CONTRIBUTING.md). For rele
 ## License
 
 Trash Tests is available under the [Apache License 2.0](./LICENSE).
+
+## Benchmark methodology
+
+See [docs/benchmark-methodology.md](docs/benchmark-methodology.md).
